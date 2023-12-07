@@ -1,48 +1,48 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * _strcpy - copies a string
- * @dest: the destination
- * @src: the source
+ * @des: the destination
+ * @srce: the source
  *
  * Return: pointer to destination
  */
-char *_strcpy(char *dest, char *src)
+char *_strcpy(char *des, char *srce)
 {
 	int i = 0;
 
-	if (dest == src || src == 0)
-		return (dest);
-	while (src[i])
+	if (des == srce || srce == 0)
+		return (des);
+	while (srce[i])
 	{
-		dest[i] = src[i];
+		des[i] = srce[i];
 		i++;
 	}
-	dest[i] = 0;
-	return (dest);
+	des[i] = 0;
+	return (des);
 }
 
 /**
  * _strdup - duplicates a string
- * @str: the string to duplicate
+ * @s: the string to duplicate
  *
  * Return: pointer to the duplicated string
  */
-char *_strdup(const char *c)
+char *_strdup(const char *s)
 {
 	int l = 0;
-	char *res;
+	char *r;
 
-	if (c == NULL)
+	if (s == NULL)
 		return (NULL);
-	while (*c++)
+	while (*s++)
 		l++;
-	res = malloc(sizeof(char) * (l + 1));
-	if (!res)
+	r = malloc(sizeof(char) * (l + 1));
+	if (!r)
 		return (NULL);
 	for (l++; l--;)
-		res[l] = *--c;
-	return (res);
+		r[l] = *--s;
+	return (r);
 }
 
 /**
