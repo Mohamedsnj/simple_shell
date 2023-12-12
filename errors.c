@@ -20,66 +20,66 @@ void _sput(char *c)
 }
 
 /**
- * _eputchar - writes the character c to stderr
- * @c: The character to print
+ * _sputchar - writes the character s to stderr
+ * @s: The character to print
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _eputchar(char c)
+int _sputchar(char s)
 {
-	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static int n;
+	static char buffer[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (s == BUF_FLUSH || n >= WRITE_BUF_SIZE)
 	{
-		write(2, buf, i);
-		i = 0;
+		write(2, buffer, n);
+		n = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
+	if (s != BUF_FLUSH)
+		buf[n++] = s;
 	return (1);
 }
 
 /**
- * _putfd - writes the character c to given fd
- * @c: The character to print
- * @fd: The filedescriptor to write to
+ * _putf - writes the character s to given f
+ * @s: The character to print
+ * @f: The filedescriptor to write to
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _putfd(char c, int fd)
+int _putf(char s, int f)
 {
-	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static int n;
+	static char buffer[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (s == BUF_FLUSH || n >= WRITE_BUF_SIZE)
 	{
-		write(fd, buf, i);
-		i = 0;
+		write(f, buffer, n);
+		n = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
+	if (s != BUF_FLUSH)
+		buffer[i++] = s;
 	return (1);
 }
 
 /**
- *_putsfd - prints an input string
- * @str: the string to be printed
- * @fd: the filedescriptor to write to
+ *_putsf - prints an input string
+ * @c: the string to be printed
+ * @f: the filedescriptor to write to
  *
  * Return: the number of chars put
  */
-int _putsfd(char *str, int fd)
+int _putsf(char *c, int f)
 {
-	int i = 0;
+	int n = 0;
 
-	if (!str)
+	if (!c)
 		return (0);
-	while (*str)
+	while (*c)
 	{
-		i += _putfd(*str++, fd);
+		n += _putf(*c++, f);
 	}
-	return (i);
+	return (n);
 }
